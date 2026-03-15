@@ -6,20 +6,12 @@ services:
     plan: free
     healthCheckPath: /
     envVars:
+      - key: PORT
+        value: 10000
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://${SQL_HOST}:${SQL_PORT}/${SQL_DATABASE}?sslmode=require
-      - key: SQL_HOST
         fromDatabase:
           name: creatix-db
-          property: host
-      - key: SQL_PORT
-        fromDatabase:
-          name: creatix-db
-          property: port
-      - key: SQL_DATABASE
-        fromDatabase:
-          name: creatix-db
-          property: database
+          property: internalConnectionString
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: creatix-db
