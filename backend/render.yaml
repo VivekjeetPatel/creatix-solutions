@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: creatix-backend
+    env: docker
+    region: ohio
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: creatix-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: creatix-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: creatix-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://your-frontend-domain.vercel.app # Change this to your Vercel URL
+      - key: ADMIN_EMAIL
+        value: admin@creatix.com
+
+databases:
+  - name: creatix-db
+    databaseName: creatix
+    user: creatix_user
+    plan: free
