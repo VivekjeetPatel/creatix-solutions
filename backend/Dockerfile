@@ -1,22 +1,18 @@
 # Build Stage
-FROM eclipse-temurin:17-jdk-alpine AS build
+FROM maven:3.8.4-openjdk-17-slim AS build
 WORKDIR /app
-
-# Copy maven executable to the image
-COPY mvnw .
-COPY .mvn .mvn
 
 # Copy the pom.xml file
 COPY pom.xml .
 
 # Download dependencies (this layer is cached)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copy the project source
 COPY src src
 
 # Package the application
-RUN ./mvnw package -DskipTests
+RUN mvn package -DskipTests
 
 # Run Stage
 FROM eclipse-temurin:17-jre-alpine
