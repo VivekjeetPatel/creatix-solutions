@@ -1,0 +1,24 @@
+# Java build files
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+
+# Node.js
+**/node_modules/
+**/dist/
+**/.env
+**/.env.*
+
+# Logs and temp files
+**/*.log
+**/tmp/
+**/.DS_Store
+**/*.bak
+
+# IDE / Editor
+**/.vscode/
+**/.idea/
+**/*.iml
+**/*.swp
+**/*.swo
