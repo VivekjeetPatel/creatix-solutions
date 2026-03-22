@@ -4,7 +4,7 @@ services:
     env: docker
     region: ohio
     plan: free
-    healthCheckPath: /
+    healthCheckPath: /api/public/services
     envVars:
       - key: PORT
         value: 10000
@@ -20,10 +20,12 @@ services:
         fromDatabase:
           name: creatix-db
           property: password
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.postgresql.Driver
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: https://your-frontend-domain.vercel.app # Change this to your Vercel URL
+        value: https://creatix-solutions.vercel.app
       - key: ADMIN_EMAIL
         value: admin@creatix.com
 
